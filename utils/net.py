@@ -1,23 +1,4 @@
 def find_resnet_layer(arch, target_layer_name):
-    """Find resnet layer to calculate GradCAM and GradCAM++
-    
-    Args:
-        arch: default torchvision densenet models
-        target_layer_name (str): the name of layer with its hierarchical information. please refer to usages below.
-            target_layer_name = 'conv1'
-            target_layer_name = 'layer1'
-            target_layer_name = 'layer1_basicblock0'
-            target_layer_name = 'layer1_basicblock0_relu'
-            target_layer_name = 'layer1_bottleneck0'
-            target_layer_name = 'layer1_bottleneck0_conv1'
-            target_layer_name = 'layer1_bottleneck0_downsample'
-            target_layer_name = 'layer1_bottleneck0_downsample_0'
-            target_layer_name = 'avgpool'
-            target_layer_name = 'fc'
-            
-    Return:
-        target_layer: found layer. this layer will be hooked to get forward/backward pass information.
-    """
     if 'layer' in target_layer_name:
         hierarchy = target_layer_name.split('_')
         layer_num = int(hierarchy[0].lstrip('layer'))
