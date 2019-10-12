@@ -112,7 +112,7 @@ class ResNet(nn.Module):
         self.layer4 = self._make_layer(block, 512, layers[3], stride=2)
         self.gap = nn.AdaptiveAvgPool2d(1)
         if self.use_conv_fc:
-            self.conv_fc = nn.Conv2d(2048, num_classes, 3, stride=1, padding=1, bias=True)
+            self.conv_fc = nn.Conv2d(2048, num_classes, 1, stride=1, bias=True)
         else:
             self.fc = nn.Linear(512 * block.expansion, num_classes)
 
